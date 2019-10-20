@@ -20,17 +20,17 @@ app.use(ejsLayouts);
 app.use(helmet());
 
 //Rate limiters for login and signup
-const loginLimiter = new RateLimit({
-  windowMs: 100 * 60 * 5, 
-  max: 3,
-  message: 'Maximum login attempts exceeded. Please try again later.'
-});
+// const loginLimiter = new RateLimit({
+//   windowMs: 100 * 60 * 5, 
+//   max: 3,
+//   message: 'Maximum login attempts exceeded. Please try again later.'
+// });
 
-const signupLimiter = new new RateLimit({
-  windowMs: 100 * 60 * 60,
-  max: 3,
-  message: 'Maximu accounts created. Please try again later.'
-})
+// const signupLimiter = new RateLimit({
+//   windowMs: 100 * 60 * 60,
+//   max: 3,
+//   message: 'Maximu accounts created. Please try again later.'
+// })
 
 // Apply rate limiters to the routes. Removed during testing. 
 // app.use('/auth/login', loginLimiter);
@@ -78,6 +78,6 @@ app.get('/profile', isLoggedIn, function(req, res) {
 
 app.use('/auth', require('./controllers/auth'));
 
-var server = app.listen(process.env.PORT || 3001, () => console.log(`🎧 You're listening to Port 3001🎧`));
+var server = app.listen(process.env.PORT || 3004, () => console.log(`🎧 You're listening to Port 3004🎧`));
 
 module.exports = server;
