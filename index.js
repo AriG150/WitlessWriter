@@ -37,7 +37,7 @@ app.use(helmet());
 // app.use('/auth/signup', signupLimiter);
 
 
-// Sotre sessions in the database 
+// Store sessions in the database 
 const sessionStore = new SequelizeStore({
   db: db.sequelize,
   expiration: 1000 * 60 * 30
@@ -68,14 +68,17 @@ app.use(function(req, res, next){
   next();
 });
 
+//Homepage 
 app.get('/', function(req, res) {
   res.render('index');
 });
 
+//Profile of user 
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
+//auth pages 
 app.use('/auth', require('./controllers/auth'));
 
 var server = app.listen(process.env.PORT || 3004, () => console.log(`🎧 You're listening to Port 3004🎧`));
