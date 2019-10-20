@@ -68,18 +68,27 @@ app.use(function(req, res, next){
   next();
 });
 
+
+//---- ROUTES --- // 
+
 //Homepage 
 app.get('/', function(req, res) {
   res.render('index');
 });
 
-//Profile of user 
+//Create a promppt (choose character, situation, both)
+app.get('/create', function(req, res){
+  res.render('create');
+})
+
+//Collection of all users writing sessions 
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
-//auth pages 
-app.use('/auth', require('./controllers/auth'));
+
+app.use('/auth', require('./routes/auth'));
+app.use('/collection', require('./routes/collection'));
 
 var server = app.listen(process.env.PORT || 3004, () => console.log(`🎧 You're listening to Port 3004🎧`));
 
