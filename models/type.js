@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   type.associate = function(models) {
     // associations can be defined here
+    models.type.belongsTo(models.session);
   };
   return type;
 };
