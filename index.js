@@ -11,6 +11,8 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./models');
 const RateLimit = require('express-rate-limit');
 
+const BASE_URL = 'https://ineedaprompt.com/dictionary/default/prompt?q=';
+
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
@@ -76,15 +78,22 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-//Create a promppt (choose character, situation, both)
+//Create a prompt (choose character, situation, both)
 app.get('/create', function(req, res){
   res.render('create');
+})
+
+//Show created prompt. User can reload or save 
+app.get('/prompt', function(req, res){
+  console.log(req.query)
+
 })
 
 //Collection of all users writing sessions 
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
+
 
 
 app.use('/auth', require('./routes/auth'));
