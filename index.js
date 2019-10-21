@@ -95,7 +95,6 @@ app.get('/profile', isLoggedIn, function(req, res) {
 });
 
 
-
 app.use('/auth', require('./routes/auth'));
 app.use('/collection', require('./routes/collection'));
 
